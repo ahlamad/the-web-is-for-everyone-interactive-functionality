@@ -1,0 +1,50 @@
+{% render 'partials/head.liquid', currentPath: currentPath  %}
+
+<main>
+    {% comment %} {{ currentPath }} {% endcomment %}
+  <section class="filters">
+    <h1>Alle producten:</h1>
+      <form method="GET" action="/" class="filter-form">
+        <label for="price-min">Min prijs:</label>
+        <input type="number" id="price-min" name="min">
+
+        <label for="price-max">Max prijs:</label>
+        <input type="number" id="price-max" name="max">
+
+        <button type="submit">Filter</button>
+      </form>
+  </section>
+
+  <section class="products-grid">
+    <h2 class="visually-hidden">Product lijst</h2>
+      <ul class="products">
+        {% for product in products %}
+
+          <li class="product-card">
+            <article>
+              <img src="{{ product.image }}" alt="{{ product.name }}">
+
+              <h3>{{ product.name }}</h3>
+
+              <p class="price-tag">€ {{ product.amount }}</p>
+
+              <a href="/product/{{ product.id }}" class="product-detail">Bekijk product</a>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+  </section>
+</main>
+
+<details>
+<summary>Data</summary>
+
+<pre>
+{% for product in products %}
+{{ product | json:4 }}
+{% endfor %}
+</pre>
+
+</details>
+
+</body>

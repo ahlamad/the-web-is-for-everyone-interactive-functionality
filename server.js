@@ -23,8 +23,68 @@ app.engine('liquid', engine.express())
 // Let op: de browser kan deze bestanden niet rechtstreeks laden (zoals voorheen met HTML bestanden)
 app.set('views', './views')
 
+// HOME/PRODUCTENOVERZICHT
+app.get('/', async function (request, response) {
+  console.log('Route / wordt aangeroepen')
 
-console.log('Let op: Er zijn nog geen routes. Voeg hier dus eerst jouw GET en POST routes toe.')
+  // Haal het geen wat ingevroerd wordt in de searchbar op
+  const search = request.query.search
+  const min = request.query.min
+  const max = request.query.max
+
+  // Haal alle producten op uit de API door een object te maken
+  const productParams = {
+    // Sorteer op naam A - Z
+    'sort': 'name'
+  }
+
+  // ZOEKBALK
+  if (search) {
+    // Voeg een filter toe aan de API query
+    // Directus zoekt dan producten waarvan de naam de zoekterm bevat
+    // _contains betekent: tekst komt ergens in de naam voor
+    productParams['filter[name][_contains]'] = search
+  }
+
+  // MINIMAAL EN MAXIMAAL BEDRAG FILTER
+  if (min) {
+    productParams['filter[amount][_gte]'] = min
+  }
+
+  if (max) {
+    productParams['filter[amount][_lte]'] = max
+  }
+
+  // Fetch request naar de Directus API
+  // Data ophalen met de API van Milledoni
+  const productResponse = await fetch(
+    'https://fdnd-agency.directus.app/items/milledoni_products?' +
+    new URLSearchParams(productParams)
+  )
+
+  // CHECK OF API WERKT
+  // console.log(productResponse.status)
+
+  const productResponseJSON = await productResponse.json()
+  // CHECK VOOR JSON DATA
+  console.log(productResponseJSON)
+
+  // Haalt lijst met de producten eruit
+  const productData = productResponseJSON.data
+
+  response.render('index.liquid', {
+    products: productData,
+    currentPath: request.path
+  })
+})
+
+// LIJSTENPAGINA
+app.get('/lijsten', async function (request, response){
+
+  response.render('lijst.liquid', {
+    currentPath: request.path
+  })
+})
 
 /*
 // Zie https://expressjs.com/en/5x/api.html#app.get.method over app.get()
