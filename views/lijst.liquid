@@ -17,6 +17,17 @@
             </form>
     </details>
 
+    <ul class="lists">
+        {% for list in lists %}
+
+          <li class="product-card">
+            <article>
+              <h3>{{ list.name }}</h3>
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+
 </main>
 
 </body>

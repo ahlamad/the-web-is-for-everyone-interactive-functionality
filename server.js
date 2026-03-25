@@ -78,7 +78,23 @@ app.get('/', async function (request, response) {
 // LIJSTENPAGINA
 app.get('/lijsten', async function (request, response){
 
+  // Haal alle producten op uit de API door een object te maken
+  const listParams = {
+  // Sorteer op naam A - Z
+    'sort': 'name'
+  }
+
+  const listResponse = await fetch(
+    'https://fdnd-agency.directus.app/items/milledoni_lists?' +
+    new URLSearchParams(listParams)
+  )
+  // console.log(listResponse.status)
+
+  const listResponseJSON = await listResponse.json()
+  const listData = listResponseJSON.data
+
   response.render('lijst.liquid', {
+    lists: listData,
     currentPath: request.path
   })
 })
