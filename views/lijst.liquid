@@ -1,7 +1,21 @@
 {% render 'partials/head.liquid', currentPath: currentPath  %}
 
 <main>
-    <h1>Kies jouw lijst:</h1>
+    <h1>Je hebt geen lijst om weer te geven.</h1>
+
+    <details>
+        <summary>Maak nieuwe lijst</summary>
+            <form method="post" action="/lijsten">
+            <label for="naam">Naam:</label>
+            <input id="naam" name="naam" type="text" required>
+            <label for="leeftijd">Leeftijd:</label>
+            <input id="leeftijd" name="leeftijd" type="number">
+            <label for="beschrijving">Beschrijving:</label>
+            <input id="beschrijving" name="beschrijving" type="text">
+
+            <button type="submit">Aanmaken</button>
+            </form>
+    </details>
 
 </main>
 
