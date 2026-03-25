@@ -191,3 +191,55 @@ main {
 .visually-hidden {
   display: none;
 }
+
+/* LIJST.LIQUID */
+
+
+summary {
+  padding: .8em;  
+  cursor: pointer;
+  background-color: #E2B100;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  width: 40%;
+  place-self: center;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  line-height: 1.4em;
+  padding: .5em;
+  margin-bottom: .5em;
+}
+
+.lijst-aanmaken {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  label {
+    padding: .5em;  
+  }
+
+  input {
+    width: 50%;
+    padding: .6em;
+    border-radius: 10px;
+  }
+
+  button {
+    padding: .8em;  
+    cursor: pointer;
+    background-color: #466EBF;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    width: 30%;
+    text-align: center;
+    margin-top: 1em;
+  }
+}

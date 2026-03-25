@@ -1,11 +1,11 @@
 {% render 'partials/head.liquid', currentPath: currentPath  %}
 
-<main>
+<main class="lijst-section">
     <h1>Je hebt geen lijst om weer te geven.</h1>
 
     <details>
         <summary>Maak nieuwe lijst</summary>
-            <form method="post" action="/lijsten">
+            <form class="lijst-aanmaken" method="post" action="/lijsten">
             <label for="naam">Naam:</label>
             <input id="naam" name="naam" type="text" required>
             <label for="leeftijd">Leeftijd:</label>
