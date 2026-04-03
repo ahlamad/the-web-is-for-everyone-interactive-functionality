@@ -16,27 +16,25 @@
           <img src="/assets/mobile-logo.svg" alt="Milledoni home" width="50" height="50">
         </a>
 
+        <form method="GET" action="/" class="search-bar">
+          
+            <label for="search" class="visually-hidden">Naam</label>
+            <input
+              type="search"
+              id="search"
+              name="search"
+              placeholder="Zoek jouw cadeau"
+            >
+       
+        </form>
+
         <ul class="nav-links">
           <li>
-            <a href="/" class="{% if currentPath == '/' %}active{% endif %}">Cadeau's</a>
+            <a href="/" class="{% if currentPath == '/' %}active{% endif %}">Ontdek cadeau's</a>
           </li>
           <li>
             <a href="/lijsten" class="{% if currentPath == '/lijsten' %}active{% endif %}">Lijsten</a>
           </li>
         </ul>
-
-<form method="GET" action="/" class="search-bar">
-  <ul class="filter-search">
-    <li class="search-field">
-    <label for="search" class="visually-hidden">Naam</label>
-    <input
-      type="search"
-      id="search"
-      name="search"
-      placeholder="Zoek jouw cadeau"
-    >
-    </li>
-</ul>
-</form>
     </nav>
   </header>
