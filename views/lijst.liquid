@@ -1,7 +1,9 @@
 {% render 'partials/head.liquid', currentPath: currentPath  %}
 
 <main class="lijst-section">
+    {% if lists.size == 0 %}
     <h1>Je hebt geen lijst om weer te geven.</h1>
+    {% endif %}
 
     <details>
         <summary>Maak nieuwe lijst</summary>
@@ -20,9 +22,20 @@
     <ul class="lists">
         {% for list in lists %}
 
-          <li class="product-card">
+          <li class="list-cards">
             <article>
               <h3>{{ list.name }}</h3>
+
+      {% if list.saved_products != empty %}
+        <ul>
+          {% for product in list.saved_products %}
+            <li>{{ product.img }} — € {{ product.amount }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Geen producten opgeslagen.</p>
+      {% endif %}
+
             </article>
           </li>
         {% endfor %}

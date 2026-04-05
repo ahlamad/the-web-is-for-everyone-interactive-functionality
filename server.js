@@ -81,7 +81,7 @@ app.get('/lijsten', async function (request, response){
   // Haal alle producten op uit de API door een object te maken
   const listParams = {
   // Sorteer op naam A - Z
-    'sort': 'name'
+    'sort': 'name',
   }
 
   const listResponse = await fetch(
@@ -92,6 +92,7 @@ app.get('/lijsten', async function (request, response){
 
   const listResponseJSON = await listResponse.json()
   const listData = listResponseJSON.data
+ console.log(listData)
 
   response.render('lijst.liquid', {
     lists: listData,
